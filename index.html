@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>泰梵天佛牌店｜包殼估價管理系統</title>
+<style>
+:root{--ink:#292722;--gold:#b58a3a;--cream:#f8f5ed;--line:#e5dece;--muted:#746f65;--bg:#f3f1ec;--red:#9d3928}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif}
+header{background:var(--ink);color:white;padding:23px 18px}header .wrap{max-width:1100px;margin:auto}header h1{margin:0;color:#ead6a5;font-size:clamp(22px,4vw,30px)}header p{margin:7px 0 0;color:#ded8cc;font-size:14px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}nav button{background:#49463f;color:#f5f0e5}nav button.active{background:#e7d3a1;color:#292722}
+main{max-width:1100px;margin:20px auto;padding:0 14px 40px}.tab{display:none}.tab.active{display:block}.layout{display:grid;grid-template-columns:1.08fr .92fr;gap:16px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:15px;padding:19px;box-shadow:0 3px 14px #29272208;margin-bottom:16px}
+h2{font-size:18px;margin:0 0 15px}h3{font-size:15px;margin:0 0 10px}.muted,.hint,small{color:var(--muted);font-size:12px;line-height:1.55}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}label{font-size:13px;color:var(--muted)}input,textarea,select{width:100%;min-width:0;border:1px solid #d8d2c7;border-radius:9px;padding:10px;font:inherit;background:white;color:var(--ink)}input:focus,textarea:focus,select:focus{outline:2px solid #d8bd7e;border-color:var(--gold)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.calc{background:var(--cream);padding:13px;border-radius:11px}.row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0}.money{font-weight:750;font-variant-numeric:tabular-nums}.big{font-size:29px;color:var(--gold);font-weight:850}
+hr{border:0;border-top:1px solid var(--line);margin:15px 0}
+.items{display:flex;flex-direction:column;gap:9px}.item{border:1px solid var(--line);border-radius:11px;padding:11px}.itemtop{display:flex;align-items:center;gap:9px}.itemtop input[type=checkbox]{width:18px;height:18px;accent-color:var(--gold)}.itemname{flex:1;font-weight:650}.itemedit{display:grid;grid-template-columns:1fr 120px;gap:8px;margin-top:9px}.itemedit input{padding:9px}.btn{border:0;border-radius:9px;padding:10px 13px;font:inherit;font-weight:650;cursor:pointer}.primary{background:var(--ink);color:white}.secondary{background:#f1ece1;color:var(--ink);border:1px solid var(--line)}.danger{background:#fff0ed;color:var(--red)}.gold{background:#ead6a5;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.remove{background:#f5f1e9;color:#6b6252;padding:7px 9px}.addrow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:10px}.quote{white-space:pre-wrap;background:#faf9f6;border:1px dashed #d8cdb7;border-radius:10px;padding:13px;font-size:13px;line-height:1.65;overflow-wrap:anywhere}.status{font-size:12px;color:#6c7550;min-height:18px;margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:650}td.num,th.num{text-align:right;white-space:nowrap}.tablewrap{overflow-x:auto}.empty{padding:20px;text-align:center;color:var(--muted);background:#faf9f6;border-radius:10px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:var(--cream);border-radius:11px;padding:13px}.stat strong{display:block;font-size:20px;margin-top:5px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.grid3{gap:6px}.panel{padding:15px}.summary{grid-template-columns:1fr 1fr}.big{font-size:25px}}
+@media print{body{background:white}header{padding:10px}nav,.no-print{display:none!important}main{margin:0;padding:0}.tab{display:none!important}#quote.tab.active{display:block!important}.panel{box-shadow:none;border:0;padding:8px}.layout{display:block}.layout>.panel:first-child{display:none}.layout>.panel:last-child{display:block}}
+</style><link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#b58a3a">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+</head>
+<body>
+<header><div class="wrap">
+<h1>泰梵天佛牌店｜包殼估價管理系統</h1><p>自訂價目・報價紀錄・客戶查詢</p>
+<nav class="no-print"><button class="active" data-tab="quote">新增估價</button><button data-tab="history">報價紀錄</button><button data-tab="settings">項目與價格管理</button><button data-tab="backup">資料備份</button></nav>
+</div></header>
+<main>
+<section id="quote" class="tab active">
+<div class="layout">
+<div>
+<div class="panel">
+<h2>01｜客戶與尺寸</h2>
+<div class="field"><label for="customer">客戶名稱（選填）</label><input id="customer" placeholder="輸入客戶名稱"></div>
+<div class="field"><label for="phone">聯絡方式（選填）</label><input id="phone" placeholder="電話或社群帳號（選填）"></div>
+<div class="grid3">
+<div class="field"><label for="length">長度（公分）</label><input id="length" type="number" min="0" step="any" value="5.5"></div>
+<div class="field"><label for="width">寬度（公分）</label><input id="width" type="number" min="0" step="any" value="3"></div>
+<div class="field"><label for="thickness">厚度（公分）</label><input id="thickness" type="number" min="0" step="any" value="1"></div>
+</div>
+<div class="calc"><div class="row"><span>尺寸總和</span><strong id="sizeSum">9.5 公分</strong></div><div class="row"><span>基本包殼費</span><strong class="money" id="basePrice">NT$ 665</strong></div><small>（長＋寬＋厚度）× 70 元，最後無條件進位至整數元。</small></div>
+<hr><h2>02｜選購加工項目</h2><p class="hint">勾選後才會加價；每項價格可在「項目與價格管理」設定。</p><div id="quoteItems" class="items"></div>
+<hr><div class="grid2"><div class="field"><label for="quantity">數量（件）</label><input id="quantity" type="number" min="1" step="1" value="1"></div><div class="field"><label for="discount">整筆折讓（元，選填）</label><input id="discount" type="number" min="0" step="1" value="0"></div></div>
+<div class="field"><label for="notes">備註</label><textarea id="notes" rows="3" placeholder="特殊要求、預計交件日期等"></textarea></div>
+<div class="actions no-print"><button id="saveQuote" class="primary">儲存這筆報價</button><button id="newQuote" class="secondary">清空／新增下一筆</button></div><div id="quoteStatus" class="status"></div>
+</div>
+</div>
+<div>
+<div class="panel">
+<h2>估價結果</h2>
+<div class="row"><span>基本包殼費／件</span><strong id="outBase">NT$ 665</strong></div>
+<div class="row"><span>選購加工費／件</span><strong id="outExtras">NT$ 0</strong></div>
+<div class="row"><span>單件小計</span><strong id="outUnit">NT$ 665</strong></div>
+<div class="row"><span>數量</span><strong id="outQty">1 件</strong></div>
+<div class="row"><span>整筆折讓</span><strong id="outDiscount">-NT$ 0</strong></div><hr>
+<div class="muted">估價總金額</div><div id="outTotal" class="big">NT$ 665</div>
+<hr><h3>報價單預覽</h3><div id="quotePreview" class="quote"></div>
+<div class="actions no-print"><button id="copyQuote" class="secondary">複製報價文字</button><button id="printQuote" class="secondary">列印／存成 PDF</button></div>
+</div>
+<div class="panel"><h3>使用提醒</h3><p class="hint">報價紀錄、客戶資料與自訂價格會保存在目前裝置的瀏覽器中。建議定期到「資料備份」下載備份檔；清除瀏覽器資料可能造成紀錄遺失。</p></div>
+</div>
+</div>
+</section>
+<section id="history" class="tab">
+<div class="panel"><h2>報價紀錄</h2><div class="grid2"><div class="field"><label for="searchHistory">搜尋客戶／報價編號</label><input id="searchHistory" placeholder="輸入關鍵字"></div><div class="field"><label for="dateFilter">依日期篩選</label><input id="dateFilter" type="date"></div></div>
+<div class="summary"><div class="stat"><span class="muted">報價筆數</span><strong id="statCount">0</strong></div><div class="stat"><span class="muted">目前篩選總額</span><strong id="statTotal">NT$ 0</strong></div><div class="stat"><span class="muted">最近報價日期</span><strong id="statLatest">—</strong></div></div><hr>
+<div id="historyTable" class="tablewrap"></div><div class="actions no-print"><button id="exportCsv" class="secondary">匯出報價紀錄 CSV</button></div><div class="status" id="historyStatus"></div>
+</div>
+</section>
+<section id="settings" class="tab">
+<div class="panel"><h2>項目與價格管理</h2><p class="hint">這裡設定的項目會出現在估價頁。你可以自行調整名稱、價格，新增或刪除項目。改價不會回頭改變已儲存報價單內的歷史金額。分享給員工前，先設定好價目，再按下方「匯出目前價目版 HTML」。</p><div id="settingsItems" class="items"></div>
+<div class="addrow"><input id="newItemName" placeholder="輸入新項目名稱，例如：特殊包殼"><button id="addItem" class="primary">＋ 新增項目</button></div><div class="status" id="settingsStatus"></div>
+<div class="actions"><button id="resetItems" class="danger">恢復預設項目</button><button id="exportShareHtml" class="gold">匯出目前價目版 HTML（分享給員工）</button></div><p class="hint">分享給員工前，先在這裡設定好價格，再按「匯出目前價目版 HTML」。新檔會帶著當下的項目與價格；員工開啟後仍可自行修改。每台裝置的報價紀錄分開保存。</p>
+</div>
+</section>
+<section id="backup" class="tab">
+<div class="panel"><h2>資料備份與還原</h2><p class="hint">備份包含自訂項目與價格、報價紀錄。建議定期下載並保存在安全位置。還原備份會以備份檔內容取代目前資料。</p>
+<div class="actions"><button id="downloadBackup" class="primary">下載完整備份 JSON</button><label class="btn secondary" for="restoreFile" style="cursor:pointer">選擇備份檔還原</label><input id="restoreFile" type="file" accept=".json,application/json" style="display:none"></div>
+<hr><h3>資料說明</h3><p class="hint">本版本是單機網頁工具，不會自動上傳到雲端，也不會在不同手機或電腦之間同步。若需要多裝置同步或多人共用，下一階段需要架設雲端資料庫與登入權限。</p><div id="backupStatus" class="status"></div>
+</div>
+</section>
+</main>
+<script>
+const DEFAULT_ITEMS=[
+{id:'i1',name:'立體花紋',price:'',checked:false},{id:'i2',name:'雷射雕刻',price:'',checked:false},
+{id:'i3',name:'特殊造型',price:'',checked:false},{id:'i4',name:'加厚加工',price:'',checked:false},
+{id:'i5',name:'加掛耳',price:'',checked:false},{id:'i6',name:'吉祥木殼設計製作',price:'',checked:false}];
+const KEY_ITEMS='taifantian_quote_items_v21',KEY_QUOTES='taifantian_quote_history_v21';
+const $=id=>document.getElementById(id);
+const clone=x=>JSON.parse(JSON.stringify(x));
+let items=read(KEY_ITEMS,clone(DEFAULT_ITEMS)),quotes=read(KEY_QUOTES,[]);
+function read(k,fallback){try{const v=JSON.parse(localStorage.getItem(k));return v??fallback}catch(e){return fallback}}
+function store(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+function money(n){return 'NT$ '+Math.round(n).toLocaleString('en-US')}
+function num(id){const n=Number($(id).value);return Number.isFinite(n)&&n>0?n:0}
+function values(){const l=num('length'),w=num('width'),t=num('thickness'),sum=l+w+t,base=Math.ceil(sum*70),extra=items.reduce((s,x)=>s+(x.checked?Math.max(0,Number(x.price)||0):0),0),qty=Math.max(1,Math.floor(num('quantity')||1)),discount=Math.min((base+extra)*qty,num('discount'));return{l,w,t,sum,base,extra,qty,discount,unit:base+extra,total:(base+extra)*qty-discount}}
+function checkedItems(){return items.filter(x=>x.checked).map(x=>({name:x.name,price:Math.max(0,Number(x.price)||0)}))}
+function renderItemList(target,editable){
+ const root=$(target);root.innerHTML='';
+ items.forEach(item=>{
+  const card=document.createElement('div');card.className='item';const top=document.createElement('div');top.className='itemtop';
+  if(!editable){const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!item.checked;cb.addEventListener('change',()=>{item.checked=cb.checked;update()});top.append(cb)}
+  const title=document.createElement('span');title.className='itemname';title.textContent=item.name;top.append(title);
+  if(editable){const del=document.createElement('button');del.className='btn remove';del.textContent='刪除';del.onclick=()=>{if(confirm('確定刪除「'+item.name+'」？')){items=items.filter(x=>x.id!==item.id);persistItems();renderAllItems();update()}};top.append(del)}
+  const edit=document.createElement('div');edit.className='itemedit';
+  if(editable){
+   const ni=document.createElement('input');ni.value=item.name;ni.placeholder='項目名稱';ni.setAttribute('aria-label','項目名稱');ni.oninput=()=>{item.name=ni.value;title.textContent=item.name;persistItems();update()};edit.append(ni);
+  }else{const desc=document.createElement('span');desc.className='muted';desc.textContent='選購加工費';edit.append(desc)}
+  const pi=document.createElement('input');pi.type='number';pi.min='0';pi.step='any';pi.value=item.price;pi.placeholder='單價（元）';pi.setAttribute('aria-label',item.name+'單價');pi.addEventListener('input',()=>{item.price=pi.value;persistItems();update()});edit.append(pi);
+  card.append(top,edit);root.append(card);
+ });
+}
+function persistItems(){const ok=store(KEY_ITEMS,items);$('settingsStatus').textContent=ok?'項目與價格已儲存。':'瀏覽器儲存空間不足，請先下載備份。'}
+function renderAllItems(){renderItemList('quoteItems',false);renderItemList('settingsItems',true)}
+function makeQuoteText(q){return `泰梵天佛牌店｜佛牌包殼估價單\n報價編號：${q.id}\n日期：${q.date}\n客戶：${q.customer||'未填寫'}\n聯絡方式：${q.phone||'未填寫'}\n尺寸：長 ${q.l} × 寬 ${q.w} × 厚 ${q.t} 公分\n尺寸總和：${q.sum} 公分\n計價方式：（長＋寬＋厚）× 70 元，無條件進位至整數元\n基本包殼費：${money(q.base)}／件\n選購加工項目：\n${q.items.length?q.items.map(x=>x.name+'：'+money(x.price)+'／件').join('\n'):'無'}\n加工費合計：${money(q.extra)}／件\n單件小計：${money(q.unit)}\n數量：${q.qty} 件\n整筆折讓：-${money(q.discount)}\n估價總金額：${money(q.total)}\n備註：${q.notes||'無'}`}
+function update(){const v=values();$('sizeSum').textContent=v.sum.toLocaleString('zh-TW',{maximumFractionDigits:4})+' 公分';$('basePrice').textContent=money(v.base);$('outBase').textContent=money(v.base);$('outExtras').textContent=money(v.extra);$('outUnit').textContent=money(v.unit);$('outQty').textContent=v.qty+' 件';$('outDiscount').textContent='-'+money(v.discount);$('outTotal').textContent=money(v.total);
+ const q={id:'預覽',date:new Date().toLocaleDateString('sv-SE'),customer:$('customer').value.trim(),phone:$('phone').value.trim(),l:v.l,w:v.w,t:v.t,sum:v.sum,base:v.base,items:checkedItems(),extra:v.extra,unit:v.unit,qty:v.qty,discount:v.discount,total:v.total,notes:$('notes').value.trim()};$('quotePreview').textContent=makeQuoteText(q)}
+function renderHistory(){const key=$('searchHistory').value.trim().toLowerCase(),date=$('dateFilter').value;const filtered=quotes.filter(q=>(!key||(q.customer+' '+q.id+' '+q.phone).toLowerCase().includes(key))&&(!date||q.date===date)).sort((a,b)=>b.createdAt-a.createdAt);
+ $('statCount').textContent=filtered.length;$('statTotal').textContent=money(filtered.reduce((s,q)=>s+q.total,0));$('statLatest').textContent=filtered[0]?.date||'—';
+ const root=$('historyTable');if(!filtered.length){root.innerHTML='<div class="empty">目前沒有符合條件的報價紀錄。儲存估價後會顯示在這裡。</div>';return}
+ const table=document.createElement('table');table.innerHTML='<thead><tr><th>日期／編號</th><th>客戶</th><th class="num">總額</th><th>操作</th></tr></thead>';const tbody=document.createElement('tbody');
+ filtered.forEach(q=>{const tr=document.createElement('tr');const d=document.createElement('td');d.textContent=q.date+'\\n'+q.id;d.style.whiteSpace='pre-line';const c=document.createElement('td');c.textContent=q.customer||'未填寫';const amount=document.createElement('td');amount.className='num';amount.textContent=money(q.total);const actions=document.createElement('td');const view=document.createElement('button');view.className='btn secondary';view.textContent='查看／複製';view.onclick=()=>{const txt=makeQuoteText(q);$('historyStatus').textContent=txt;const b=document.createElement('button');b.className='btn secondary';b.textContent='複製此報價';b.onclick=()=>copyText(txt);$('historyStatus').appendChild(document.createElement('br'));$('historyStatus').appendChild(b)};const del=document.createElement('button');del.className='btn danger';del.style.marginLeft='5px';del.textContent='刪除';del.onclick=()=>{if(confirm('確定刪除報價 '+q.id+'？')){quotes=quotes.filter(x=>x.id!==q.id);store(KEY_QUOTES,quotes);renderHistory()}};actions.append(view,del);tr.append(d,c,amount,actions);tbody.append(tr)});table.append(tbody);root.innerHTML='';root.append(table)}
+async function copyText(txt){try{await navigator.clipboard.writeText(txt);$('quoteStatus').textContent='報價單文字已複製。'}catch(e){const ta=document.createElement('textarea');ta.value=txt;document.body.append(ta);ta.select();document.execCommand('copy');ta.remove();$('quoteStatus').textContent='已嘗試複製報價文字。'}}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.id===b.dataset.tab));if(b.dataset.tab==='history')renderHistory()}));
+['length','width','thickness','quantity','discount','customer','phone','notes'].forEach(id=>$(id).addEventListener('input',update));
+$('addItem').onclick=()=>{const name=$('newItemName').value.trim();if(!name){$('newItemName').focus();return}items.push({id:'i'+Date.now()+Math.random().toString(16).slice(2),name,price:'',checked:false});$('newItemName').value='';persistItems();renderAllItems();update()};
+$('newItemName').onkeydown=e=>{if(e.key==='Enter')$('addItem').click()};
+$('resetItems').onclick=()=>{if(confirm('恢復預設項目？目前自訂項目與價格會被取代。')){items=clone(DEFAULT_ITEMS);persistItems();renderAllItems();update()}};
+$('exportShareHtml').onclick=()=>{const shareItems=items.map(x=>({id:String(x.id),name:String(x.name||''),price:String(x.price??''),checked:false}));const safe=JSON.stringify(shareItems).replace(/</g,'\\u003c');const html=document.documentElement.outerHTML.replace(/const DEFAULT_ITEMS=\[[\s\S]*?\];/, 'const DEFAULT_ITEMS='+safe+';');download('泰梵天包殼估價_V2.1_分享版.html', '<!doctype html>\n'+html, 'text/html;charset=utf-8');$('settingsStatus').textContent='已匯出分享版 HTML；請把新下載的檔案傳給員工。';};
+$('saveQuote').onclick=()=>{const v=values();if(!v.l||!v.w||!v.t){if(!confirm('有尺寸未填或為 0，仍要儲存這筆報價嗎？'))return}const now=new Date(),date=now.toLocaleDateString('sv-SE'),id='TF'+date.replaceAll('-','')+'-'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0')+String(quotes.length+1).padStart(2,'0');const q={id,date,createdAt:now.getTime(),customer:$('customer').value.trim(),phone:$('phone').value.trim(),l:v.l,w:v.w,t:v.t,sum:v.sum,base:v.base,items:checkedItems(),extra:v.extra,unit:v.unit,qty:v.qty,discount:v.discount,total:v.total,notes:$('notes').value.trim()};quotes.push(q);const ok=store(KEY_QUOTES,quotes);$('quoteStatus').textContent=ok?'已儲存報價 '+id+'，可在「報價紀錄」查詢。':'儲存失敗，可能是瀏覽器儲存空間不足，請先備份。';renderHistory()};
+$('newQuote').onclick=()=>{if(confirm('清空目前估價輸入？已儲存的報價紀錄不會刪除。')){['customer','phone','notes'].forEach(id=>$(id).value='');$('length').value='';$('width').value='';$('thickness').value='';$('quantity').value='1';$('discount').value='0';items.forEach(x=>x.checked=false);renderAllItems();update();$('quoteStatus').textContent='已清空，可以開始下一筆估價。'}};
+$('copyQuote').onclick=()=>copyText($('quotePreview').textContent);$('printQuote').onclick=()=>window.print();
+$('searchHistory').oninput=renderHistory;$('dateFilter').onchange=renderHistory;
+$('exportCsv').onclick=()=>{const rows=[['報價編號','日期','客戶','聯絡方式','長','寬','厚','基本費','加工費','數量','折讓','總額','備註'],...quotes.map(q=>[q.id,q.date,q.customer,q.phone,q.l,q.w,q.t,q.base,q.extra,q.qty,q.discount,q.total,q.notes])];const csv='\\ufeff'+rows.map(r=>r.map(x=>'"'+String(x??'').replaceAll('"','""')+'"').join(',')).join('\\r\\n');download('泰梵天報價紀錄.csv',csv,'text/csv;charset=utf-8')};
+function download(name,data,type){const blob=new Blob([data],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
+$('downloadBackup').onclick=()=>download('泰梵天包殼估價備份-'+new Date().toLocaleDateString('sv-SE')+'.json',JSON.stringify({app:'泰梵天佛牌店包殼估價系統',version:2,exportedAt:new Date().toISOString(),items,quotes},null,2),'application/json');
+$('restoreFile').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!Array.isArray(data.items)||!Array.isArray(data.quotes))throw Error('格式不正確');if(!confirm('還原將取代目前項目、價格與報價紀錄，確定繼續？'))return;items=data.items;quotes=data.quotes;store(KEY_ITEMS,items);store(KEY_QUOTES,quotes);renderAllItems();update();renderHistory();$('backupStatus').textContent='備份已還原。'}catch(err){$('backupStatus').textContent='無法還原：檔案格式不正確或內容損壞。'}finally{e.target.value=''}};
+renderAllItems();update();renderHistory();
+</script><script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+}
+</script>
+</body></html>

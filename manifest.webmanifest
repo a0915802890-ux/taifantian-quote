@@ -1,0 +1,15 @@
+{
+  "id": "/",
+  "name": "泰梵天佛牌店｜包殼估價",
+  "short_name": "包殼估價",
+  "description": "泰梵天佛牌店內部包殼估價工具",
+  "lang": "zh-TW",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f3f1ec",
+  "theme_color": "#b58a3a",
+  "icons": [
+    {"src":"/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
